@@ -21,25 +21,19 @@ void print( List* l, std::ostream &out){
 
 //Returns the number of items in the list
 int length(List* l){
-    int length = 0;
-    while ( l != NULL ){
-        l = l->next;
-        length++;
-    }
-    return length;
+    if ( l == NULL)
+        return 0;  
+    return 1 + length( l-> next );
 }
+
 
 //Get the Nth item from the list
 string get(List* l, int index){
-    while( l != NULL && index > 0 ){
-            index--;
-            l = l->next;
-    }
-    if ( l == NULL ){
+    if ( l == NULL )
         return "";
-    } else {
+    if (  index == 0)
         return l->value;
-    }
+    return get( l->next , index - 1 );
 }
 
 //Returns true if the list contains needle
